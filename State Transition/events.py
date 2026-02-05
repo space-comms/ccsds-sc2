@@ -1,35 +1,41 @@
 # Session Control Variable Initialization Table
 
-# Variables - Value
+# Session Control Variables - Value
 # TRANSMIT, MODULATION, PERSISTENCE = off, off, false
 # SS, X, Y, Z = 0
 # WAIT TIMER (WT), CARRIER_LOSS_TIMER, PLCW_TIMER = 0
 # SEQUENCE CONTROLLED (SEQ_CTRL_FSN) = 0
 # EXPEDITED FRAME SEQUENCE COUNTERS (EXP_FSN) = 0
 
+# State Control Variables
+# MODE (inactive, connecting-T, connecting-L, active)
+# DUPLEX (full, half, simplex transmit, simplex receive)
+# TRANSMIT (off, on)
+# SUB-STATE
+
+
+
 from typing import Dict, Callable, Tuple
 from enum import Enum
 
-class Event(Enum):
-    E1 = "E1"
-    E2 = "E2"
-    E3 = "E3"
-    E4 = "E4"
-    E5 = "E5"
-    E6 = "E6"
-    E7 = "E7"
-    E8 = "E8"
-    E9 = "E9"
-    E10 = "E10"
-    E11 = "E11"
-    E80 = "E80"
-    E81 = "E81"
-    E82 = "E82"
+@dataclass
+class Event:
+    event_no: str
+    description: str
+    from_state: Optional[str] = None
+    from_states: Optional[List[str]] = None
+    to_state: str
+    actions: List[str]
 
-# Action functions
+# Full Duplex Session Establishment and Data Services
 
-def e2_actions(vars):
-    vars.WT = vars.carrier_only_duration
-    vars.PERSISTENCE = True
 
-def e3_actions(vars):
+# Full Duplex Communication Change State
+# Full Duplex Session Termination State
+
+
+# Half Duplex Session Establishment and Data Services
+# Half Duplex Communication Change State
+# Half Duplex Session Termination State
+
+# Simplex State Transition

@@ -1,3 +1,27 @@
+# Sub-states
+"""
+Sub-state (2,4,7)
+Action - IDLE (Acqusition or Tail)
+
+Sub-state (0,3,6), SPDU pending = true
+Action - ASM + P-frame (SPDU) + CRC
+
+Sub-state (0,3,6) SPDU pending = false, PERSISTENCE = true
+Action - Idle
+
+Sub-state (0,3,6) SPDU pending = false, PERSISTENCE = false, NEED_PLCW = true
+Action - ASM + PLCW/Status + CRC
+
+Sub-state (0,3,6) SPDU pending = false, PERSISTENCE = false, NEED_PLCW = false, SDU pending = true
+Action - ASM + U-frame(SDU) + CRC
+
+Sub-state (0,3,6) SPDU pending = false, PERSISTENCE = false, NEED_PLCW = false, SDU pending = false
+Action - IDLE
+
+Sub-state 1 indicates transmit carrier only
+Sub-state 5 indicates transmit off, receive waiting for response
+"""
+
 @dataclass
 class ProtocolState:
     name: str # S1, S,2, S31, etc.

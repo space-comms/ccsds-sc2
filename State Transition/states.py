@@ -79,6 +79,3 @@ DUPLEX_SIMPLEX_STATES = {
     "S71": ProtocolState("Simplex Transmit", "off", "on", "active", "on", 0),
     "S72": ProtocolState("Simplex Receive", "on", "off", "active", "off", 0),
 }
-# State Transition Session Establishment Table 5-6 (DUPLEX=Full)
-# State Transition Comm Change Table 5-7 (DUPLEX=Full)
-# State Transition Session Termination Table 5-8 (DUPLEX=Full)

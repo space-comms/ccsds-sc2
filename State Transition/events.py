@@ -13,7 +13,8 @@
 # TRANSMIT (off, on)
 # SUB-STATE
 
-
+from state_control_vars import StateControlVars
+from operational_control_vars import OperationalControlVars
 
 from typing import Dict, Callable, Tuple
 from enum import Enum

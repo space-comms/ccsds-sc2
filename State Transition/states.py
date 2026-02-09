@@ -22,8 +22,16 @@ Sub-state 1 indicates transmit carrier only
 Sub-state 5 indicates transmit off, receive waiting for response
 """
 
-@dataclass
+
 class ProtocolState:
+    def __init__(self, name, receive_state_desc, send_state_desc, MODE, T, SS):
+        self.name = name
+        self.receive_state_desc = receive_state_desc
+        self.send_state_desc = send_state_desc
+        self.MODE = MODE
+        self.T = T
+        self.SS = SS
+
     name: str # S1, S,2, S31, etc.
     receive_state_desc: str # "off", "on", "connecting-L", "active"
     send_state_desc: str # "off", "async", "sync", "connecting-T"

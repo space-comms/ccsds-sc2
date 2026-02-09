@@ -2,44 +2,18 @@ from dataclasses import dataclass
 from enum import Enum
 from state_control_vars import StateControlVars
 from operational_control_vars import OperationalControlVars
+from states import ProtocolState, DUPLEX_FULL_STATES, DUPLEX_INDEPENDENT_STATES
 
-class S1(Enum):
-    # Set initialize mode
-    TRANSMIT = "off"
-    MODULATION = "off"
-    PERSISTENCE: bool = False
-    SS: int = 0
-    X: int = 0
-    Y: int = 0
-    Z: int = 0
-    WT: int = 0
-    CARRIER_LOSS_TIMER: int = 0
-    PLCW_TIMER: int = 0
-    SEQ_CTRL_FSN: int = 0
-    EXP_FSN: int = 0
+class SessionFSM:
+    def __init__(self, duplex_mode = "full"):
+        self.state_dict = DUPLEX_FULL_STATES
+        self.state = DUPLEX_INDEPENDENT_STATES["S1"]
+        self.current_state_key = current_state_key
+    def transition_to(self, new_key):
+        if new_key in self.state_dict:
+            self.current_state_key = new_key
+            self.state = self.state_dict[new_key]
 
-class FullDuplexFSM:
-    def __init__(self):
-        self.state_vars = StateControlVars()
-        self.op_vars = OperationalControlVars()
-        self.vars.reset_for_session_start()
-
-        self.duplex = duplex
-        self.current_state_key = "S1"
-        self.states = {**STATES_TABLE_5_1, **STATES_TABLE_5_2}
-        self.vars = SessionControlVars()
-
-    def event_
-    @property
-    def state(self) -> ProtocolState:
-        return self.states[self.current_state_key]
-
-    def transition_to(selfself, state_key: str):
-        if state_key not in self.states:
-            raise ValueError(f"Invalid state: {state_key}")
-        self.current_state_key = state_key
-        print(f"{self.state}")
-
-    def check_conditions(self) -> bool:
-        s = self.state
-        return (self.vars.TX == s.T and sel)
+fsm = SessionFSM()
+fsm.transition_to("S40")
+print(fsm.state)

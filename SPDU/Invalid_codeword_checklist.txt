@@ -1,0 +1,4 @@
+Parts to check for invalid code word:
+SPDU 1:
+    TX_MODULATION and TX_DATA_RATE: if DATA_RATE modulation and MODULATION is not the same then the code word is invalid
+    (Note: TX_DATA_RATE would specify modulation for some data rates. Why? I don't know)
